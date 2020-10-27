@@ -1,0 +1,29 @@
+Steps in Pruning Subsequence Search
+
+Obtain positive/negative pairs
+Train
+Precompute for every sequence
+Calculate Eucledian distance
+Training Data:
+	MIDI files matched to audio files
+	5536 sequence pairs
+Preprocessing:
+	 log-magnitude constant-Q spectrograms 
+	 CQS has 4 octaves: using twelve bins per octave starting from MIDI note C2 (65.4 Hz)
+	 Spectra computed every 46.4 millisecond
+Architecture:
+	Siamese CNN on query and target
+	Attention layer
+	Fully connected layer
+	128 dimensional embedding layer
+Loss function:
+	L = ||f(Xp) − g(Yp)||^2_2 + α max(0, m − ||f(Xn) − g(Yn)||_2)^2
+	Minibatch size 20
+Hyperparameters:
+	Layers, Neurons in CNN
+	Leraning rate momentum
+	alpha, m
+Bhattacharrya coefficient between the distributions of matching and non-matching pairs in the validation set
+Test set:
+	1281 MIDI files with MSD
+	
